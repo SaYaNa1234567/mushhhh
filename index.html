@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+
+
+<h4>Score:</h4><h4 class="score"></h4>
+	<style type="text/css">
+		
+		.duck {
+			height: 100px;
+			width: 100px;
+			background: ;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+<img src="1s.png" style="height: 500px;">
+
+<img src="1s.png" style="height: 500px; margin-left: 1100px;">
+
+
+
+
+
+
+<button class="btn">nazhmi</button>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	
+	let y = [150,350,550];
+	let btn = document.querySelector(".btn");
+	let point = 0;
+	let types = ['bad', 'good']
+	let score = document.querySelector(".score");
+
+	let createDuck = function() {
+		let duck = document.createElement("div");
+		document.body.appendChild(duck);
+		duck.classList.add("duck");
+		randomX = Math.round(Math.random()*900+200);
+		duck.style.left = randomX + "px";
+		randomY = Math.round(Math.random()*2);
+		duck.style.top = y[randomY] + "px";
+
+		console.dir(duck)
+		let typeIndex = Math.round(Math.random()*1);
+		duck.myType = types[typeIndex];
+
+		if(duck.myType == 'good'){
+			duck.style.background= "";
+			duck.style.backgroundImage = "url(10.png)";
+			duck.style.backgroundSize = "100% 100%";
+		}
+		else if(duck.myType == 'bad'){
+			duck.style.background= "";
+			duck.style.backgroundImage = "url(2.png)";
+			duck.style.backgroundSize = "100% 100%";
+		}
+
+		duck.onclick = function(){
+			duck.style.display = "none"
+			if(duck.myType == 'good'){
+			point= point +2;
+			score.innerHTML = point;
+		}
+		else if(duck.myType == 'bad'){
+			point= point-1;
+			score.innerHTML = point;
+		}
+
+
+			console.log(point);
+		}
+
+
+	}
+	let endGame = function(){
+		clearInterval(interval1);
+		if (point>=20){
+			alert("You win")
+
+		}
+		else{
+			alert("You lose")
+		}
+	}
+
+
+    btn.onclick = function(){
+	interval1 = setInterval(createDuck, 500);
+	setTimeout(endGame,15000)
+
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
